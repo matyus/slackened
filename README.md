@@ -42,7 +42,7 @@
         def self.call
             response = ExampleMessage.post(
                 context: Rails.env,
-                body: 'Please do something about this: #{pay}'
+                payment_id: 'payment-abc-erf-123'
             )
         end
     end
