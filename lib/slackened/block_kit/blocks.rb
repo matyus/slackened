@@ -14,7 +14,7 @@ module Slackened
       extend Forwardable
 
       # alphabetical
-      def_delegators self, :actions, :button, :contxt, :divider, :header, :section, :text
+      def_delegators self, :actions, :button, :context, :divider, :header, :section, :text
 
       # alphabetical
       class << self
@@ -43,7 +43,8 @@ module Slackened
           }
         end
 
-        def contxt(*elements)
+        # avoid `context` naming collision
+        def context(*elements)
           raise TooManyElementsError if elements.length > 10
 
           # need to allow for image

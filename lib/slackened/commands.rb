@@ -21,9 +21,6 @@ module Slackened
 
       uri = URI(@slack_uri)
 
-      puts "URI  #{uri}"
-      puts "BODY #{body}"
-
       Net::HTTP.post(uri, body, @headers.merge(headers))
     end
   end

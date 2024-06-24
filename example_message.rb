@@ -13,7 +13,7 @@ class ExampleMessage < Slackened::BlockKit::Message
   def self.layout(name:, contexts:, descriptions:) # rubocop:disable Metrics/MethodLength
     build do |message|
       message.row header(name)
-      message.row contxt(*contexts)
+      message.row context(*contexts)
       message.row section(*descriptions)
       message.row actions(
         button(
@@ -29,7 +29,7 @@ end
 class ExampleService
   def self.call # rubocop:disable Metrics/MethodLength
     response = ExampleMessage.post(
-      name: 'Velma Dinkley',
+      name: 'Where aer you?',
       contexts: [
         'Scooby Doo',
         'Scrappy Doo'

@@ -35,9 +35,9 @@ describe Slackened::BlockKit::Blocks do # rubocop:disable Metrics/BlockLength
     end
   end
 
-  context '#contxt' do # rubocop:disable Metrics/BlockLength
+  context '#context' do # rubocop:disable Metrics/BlockLength
     it 'renders a context object properly' do
-      rendered = dummy.contxt(
+      rendered = dummy.context(
         'one',
         'two',
         'three',
@@ -56,7 +56,7 @@ describe Slackened::BlockKit::Blocks do # rubocop:disable Metrics/BlockLength
 
     it 'raises_error on 11 items' do
       expect do
-        dummy.contxt(
+        dummy.context(
           'one',
           'two',
           'three',
