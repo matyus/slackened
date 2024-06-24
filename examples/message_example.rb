@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # deps
-require_relative 'lib/slackened'
+require_relative '../lib/slackened'
 
 # initializer
 Slackened.configure do |config|
