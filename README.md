@@ -29,7 +29,7 @@
         build do |message|
           message.row header('Payment failed!')
           message.row context(context)
-          message.row section('Please do something about this: #{payment_id}")
+          message.row section("Please do something about this: #{payment_id}")
         end
       end
     end
