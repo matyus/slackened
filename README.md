@@ -9,21 +9,16 @@
 
 1. Add `slackened` to your `Gemfile`
 
-        ```rb
         gem 'slackened'
-        ```
 
 1. Configure the Webhook URL in an initializer
 
-        ```rb
         Slackened.configure do |config|
             config.web_hook_url = 'https://hooks.slack.com/services/<your unique url>'
         end
-        ```
 
 1. Build a layout
 
-        ```
         class PaymentFailedMessage < Slackened::BlockKit::Message
           def self.layout(payment_id:, context:)
             build do |message|
@@ -34,11 +29,9 @@
             end
           end
         end
-        ```
 
 1. Supply the variables
 
-        ```
         class ExampleService
             def self.call
                 response = ExampleMessage.post(
@@ -47,7 +40,6 @@
                 )
             end
         end
-        ```
 
 
 ## Development
@@ -56,7 +48,5 @@
 
 1. Install the libraries
 
-        ```
         bundle install
-        ```
 
