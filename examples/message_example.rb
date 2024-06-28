@@ -6,6 +6,7 @@ require_relative '../lib/slackened'
 # initializer
 Slackened.configure do |config|
   config.webhook_url = ENV.fetch('SLACK_WEBHOOK_URL') { puts 'SLACK_WEBHOOK_URL is missing.' }
+  config.signing_secret = ENV.fetch('SLACK_SIGNING_SECRET') { puts 'SLACK_SIGNING_SECRET is missing.' }
 end
 
 # proof of concept
@@ -29,7 +30,7 @@ end
 class ExampleService
   def self.call # rubocop:disable Metrics/MethodLength
     response = ExampleMessage.post(
-      name: 'Where aer you?',
+      name: 'Things work now',
       contexts: [
         'Scooby Doo',
         'Scrappy Doo'
