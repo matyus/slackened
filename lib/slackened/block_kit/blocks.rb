@@ -21,7 +21,7 @@ module Slackened
         def actions(*elements)
           max = 25
 
-          raise TooManyElementsError, "#{elements.count} is more than #{max}" if elements.length > max
+          raise TooManyElementsError, "#{elements.count} can't be greater than #{max}" if elements.length > max
 
           {
             type: :actions,
@@ -30,7 +30,9 @@ module Slackened
         end
 
         def button(plain_text:, action_id:) # rubocop:disable Metrics/MethodLength
-          raise TooManyCharactersError, text if plain_text.length > 75
+          max = 75
+
+          raise TooManyCharactersError, "#{plain_text} can't be greater than #{max}" if plain_text.length > max
 
           {
             action_id:,
@@ -45,11 +47,13 @@ module Slackened
 
         # avoid `context` naming collision
         def context(*elements)
-          raise TooManyElementsError if elements.length > 10
+          max = 10
+
+          raise TooManyElementsError, "#{elements.count} can't be greater than #{max}" if elements.length > max
 
           # need to allow for image
           # https://api.slack.com/reference/block-kit/blocks#context
-          raise MustBeString unless elements.all? { |e| e.is_a? String }
+          raise MustBeString, 'all elements must be a string' unless elements.all? { |e| e.is_a? String }
 
           {
             type: :context,
@@ -62,7 +66,8 @@ module Slackened
         end
 
         def header(plain_text)
-          raise TooManyCharactersError if plain_text.length > 150
+          max = 150
+          raise TooManyCharactersError, "#{plain_text} can't be greater than #{max}" if plain_text.length > 150
           raise MustBeString unless plain_text.is_a? String
 
           {
@@ -74,9 +79,17 @@ module Slackened
           }
         end
 
-        def section(*fields)
-          raise TooManyFieldsError if fields.length > 10
+        def section(*fields) # rubocop:disable Metrics/MethodLength
+          max = 10
+          raise TooManyFieldsError, "#{fields.count} can't be greater than #{max}" if fields.length > max
           raise MustBeString unless fields.all? { |f| f.is_a? String }
+
+          if fields.one?
+            return {
+              type: :section,
+              text: text(fields.first)
+            }
+          end
 
           {
             type: :section,
@@ -85,7 +98,8 @@ module Slackened
         end
 
         def text(markdown)
-          raise TooManyCharactersError if markdown.length > 3000
+          max = 3000
+          raise TooManyCharactersError, "#{markdown.length} can't be greater than #{max}" if markdown.length > max
 
           {
             type: :mrkdwn,

@@ -3,13 +3,12 @@
 module Slackened
   # Determine whether the incoming request is fraudulent
   class Request
-    attr_reader :request, :signature, :timestamp
+    attr_reader :signature, :timestamp, :body
 
-    def initialize(request)
-      @request = request
-      @timestamp = @request.headers.fetch('X-Slack-Request-Timestamp')
-      @signature = @request.headers.fetch('X-Slack-Signature')
-      @body = @request.raw_post
+    def initialize(timestamp:, signature:, body:)
+      @timestamp = timestamp.to_i
+      @signature = signature
+      @body = body
     end
 
     # The signature depends on the timestamp to protect against replay attacks. While you're extracting the timestamp,
@@ -17,7 +16,10 @@ module Slackened
     # differ from local time by more than five minutes.
     # https://api.slack.com/authentication/verifying-requests-from-slack
     def stale?
-      Time.zone.at(@timestamp.to_i) > 5.minutes.ago
+      # is it less than 5 minutes old?
+      five_minutes_ago = Time.now - 60 * 5
+
+      Time.at(@timestamp) > five_minutes_ago
     end
 
     # Slack creates a unique string for your app and shares it with you.
@@ -26,9 +28,9 @@ module Slackened
     def valid?
       return false if stale?
 
-      sig_basestring = "v0:#{@timestamp}:#{request_body}"
+      sig_basestring = "v0:#{@timestamp}:#{@body}"
 
-      secret = Slackened::Configuration.signing_secret
+      secret = Slackened.configuration.signing_secret
 
       digest = OpenSSL::HMAC.hexdigest('SHA256', secret, sig_basestring)
 

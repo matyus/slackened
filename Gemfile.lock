@@ -20,6 +20,7 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.13.0)
     rspec-support (3.13.1)
+    timecop (0.9.10)
 
 PLATFORMS
   arm64-darwin-22
@@ -27,6 +28,7 @@ PLATFORMS
 DEPENDENCIES
   Slackened!
   rspec (~> 3.13.0)
+  timecop (~> 0.9.10)
 
 BUNDLED WITH
    2.4.19

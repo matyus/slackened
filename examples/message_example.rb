@@ -10,15 +10,16 @@ Slackened.configure do |config|
 end
 
 # proof of concept
-class ExampleMessage < Slackened::BlockKit::Message
-  def self.layout(name:, contexts:, descriptions:) # rubocop:disable Metrics/MethodLength
+class ExampleMessage < Slackened::Surface::Message
+  def self.layout(name:, body:, contexts:, descriptions:) # rubocop:disable Metrics/MethodLength
     build do |message|
       message.row header(name)
       message.row context(*contexts)
+      message.row section(body)
       message.row section(*descriptions)
       message.row actions(
         button(
-          plain_text: 'Awsome',
+          plain_text: 'Awesome',
           action_id: 'awesome-danger-1'
         )
       )
@@ -31,6 +32,7 @@ class ExampleService
   def self.call # rubocop:disable Metrics/MethodLength
     response = ExampleMessage.post(
       name: 'Things work now',
+      body: 'Performs the job immediately. The job is not sent to the queuing adapter but directly executed by blocking the execution of others until it\'s finished.', # rubocop:disable Style/LineLength
       contexts: [
         'Scooby Doo',
         'Scrappy Doo'

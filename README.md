@@ -17,7 +17,8 @@
 
     ```rb
     Slackened.configure do |config|
-        config.web_hook_url = 'https://hooks.slack.com/services/<your unique url>'
+      config.webhook_url = ENV.fetch('SLACK_WEBHOOK_URL') { puts 'SLACK_WEBHOOK_URL is missing.' }
+      config.signing_secret = ENV.fetch('SLACK_SIGNING_SECRET') { puts 'SLACK_SIGNING_SECRET is missing.' }
     end
     ```
 
@@ -39,12 +40,12 @@
 
     ```rb
     class ExampleService
-        def self.call
-            response = ExampleMessage.post(
-                context: Rails.env,
-                payment_id: 'payment-abc-erf-123'
-            )
-        end
+      def self.call
+        response = ExampleMessage.post(
+          context: Rails.env,
+          payment_id: 'payment-abc-erf-123'
+        )
+      end
     end
     ```
 

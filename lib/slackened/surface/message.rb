@@ -2,12 +2,10 @@
 
 require 'forwardable'
 
-require_relative 'blocks'
-require_relative 'data'
-
 module Slackened
-  module BlockKit
+  module Surface
     # Proof of concept
+    # https://api.slack.com/surfaces/messages
     class Message
       extend Forwardable
       extend Slackened::BlockKit::Blocks
