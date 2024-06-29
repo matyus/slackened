@@ -74,6 +74,13 @@ describe Slackened::BlockKit::Blocks do # rubocop:disable Metrics/BlockLength
   end
 
   context '#section' do # rubocop:disable Metrics/BlockLength
+    it 'renders 1 item' do
+      rendered = dummy.section('one')
+
+      expect(rendered[:type]).to be(:section)
+      expect(rendered.dig(:text, :text)).to be('one')
+    end
+
     it 'renders 10 items' do
       rendered = dummy.section(
         'one',

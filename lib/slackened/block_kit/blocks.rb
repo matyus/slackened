@@ -67,6 +67,7 @@ module Slackened
 
         def header(plain_text)
           max = 150
+
           raise TooManyCharactersError, "#{plain_text} can't be greater than #{max}" if plain_text.length > 150
           raise MustBeString unless plain_text.is_a? String
 
@@ -81,6 +82,7 @@ module Slackened
 
         def section(*fields) # rubocop:disable Metrics/MethodLength
           max = 10
+
           raise TooManyFieldsError, "#{fields.count} can't be greater than #{max}" if fields.length > max
           raise MustBeString unless fields.all? { |f| f.is_a? String }
 
@@ -99,6 +101,7 @@ module Slackened
 
         def text(markdown)
           max = 3000
+
           raise TooManyCharactersError, "#{markdown.length} can't be greater than #{max}" if markdown.length > max
 
           {
