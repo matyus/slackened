@@ -53,7 +53,9 @@
 
 1. Enable **Interactivity & Shortcuts** for your app
 
-    https://api.slack.com/apps/<APP ID>/interactive-messages
+    ```
+    https://api.slack.com/apps/YOUR-APP-ID/interactive-messages
+    ```
 
 1. Set the `signing_secret` in an initializer
 
@@ -90,6 +92,7 @@
       private
 
       def validate_request
+        # https://api.slack.com/authentication/verifying-requests-from-slack
         Slackened::Authentication.validate_request(
           timestamp: request.headers.fetch('X-Slack-Request-Timestamp'),
           signature: request.headers.fetch('X-Slack-Signature'),
@@ -98,6 +101,11 @@
       end
     end
 
+## TODO
+
+- [ ] Better tests
+- [ ] Add `Slackened::Surface::Modal` as per [https://api.slack.com/interactivity/handling](https://api.slack.com/interactivity/handling#modal_responses)
+- [ ] More comprehensive support for all the [Blocks](https://api.slack.com/reference/block-kit/blocks)
 
 ## Development
 
