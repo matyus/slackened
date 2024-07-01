@@ -76,7 +76,13 @@
         payload = JSON.parse(params.fetch(:payload))
         response_url = payload['response_url']
 
-        # etc..
+        # See the Getting Started section above for setting up a Message
+        # you can override the default URL via the `post` method here...
+        ExampleResponseMessage.post(
+          message: 'Message received!',
+          user_id: payload.dig('user', 'id'),
+          url: payload['response_url']
+        )
 
         render plain: :ok
       end
