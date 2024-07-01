@@ -101,6 +101,26 @@
       end
     end
 
+## Blocks
+
+Usable components:
+
+  - Actions
+  - Button
+  - Context
+  - Divider
+  - Header
+  - Section
+  - Text
+
+## Surfaces
+
+-  Message
+
+## Security
+
+- Authenticate responses from Slack
+
 ## TODO
 
 - [ ] Better tests
