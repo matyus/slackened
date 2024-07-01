@@ -7,7 +7,7 @@ module Slackened
 		# proof of concept
 		module Blocks
 			class Context < Slackened::BlockKit::Blocks::Base
-			MAX_LENGTH = 10
+				MAX_LENGTH = 10
 
 				def initialize(*elements)
 					raise TooManyElementsError, "#{elements.count} can't be greater than #{MAX_LENGTH}" if elements.length > MAX_LENGTH

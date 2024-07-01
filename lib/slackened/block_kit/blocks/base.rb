@@ -25,9 +25,10 @@ module Slackened
 				# recursion?
 				def to_h
 					@block.to_h do |key, value|
-						if value.is_a?(Array)
+						case value
+						when Array
 							[key, value.map(&:to_h)]
-						elsif value.is_a?(Base)
+						when Base
 							[key, value.to_h]
 						else
 							[key, value]

@@ -10,8 +10,7 @@ module Slackened
 				MAX_LENGTH = 150
 
 				def initialize(plain_text)
-
-					raise TooManyCharactersError, "#{plain_text} can't be greater than #{MAX_LENGTH}" if plain_text.length > 150
+					raise TooManyCharactersError, "#{plain_text} can't be greater than #{MAX_LENGTH}" if plain_text.length > MAX_LENGTH
 					raise MustBeString unless plain_text.is_a? String
 
 					set({
