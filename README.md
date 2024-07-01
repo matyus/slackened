@@ -68,28 +68,28 @@
 
     ```rb
     class ExampleController < ApplicationController
-        before_action :validate_request
+      before_action :validate_request
 
-        def response
-            # Handle the request
-            # https://api.slack.com/interactivity/handling#message_responses
-            payload = JSON.parse(params.fetch(:payload))
-            response_url = payload['response_url']
+      def response
+        # Handle the request
+        # https://api.slack.com/interactivity/handling#message_responses
+        payload = JSON.parse(params.fetch(:payload))
+        response_url = payload['response_url']
 
-            # etc..
+        # etc..
 
-            render plain: :ok
-        end
+        render plain: :ok
+      end
 
-        private
+      private
 
-        def validate_request
-            Slackened::Authentication.validate_request(
-                timestamp: request.headers.fetch('X-Slack-Request-Timestamp'),
-                signature: request.headers.fetch('X-Slack-Signature'),
-                body: request.raw_post
-            )
-        end
+      def validate_request
+        Slackened::Authentication.validate_request(
+          timestamp: request.headers.fetch('X-Slack-Request-Timestamp'),
+          signature: request.headers.fetch('X-Slack-Signature'),
+          body: request.raw_post
+        )
+      end
     end
 
 
