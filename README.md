@@ -25,7 +25,7 @@
 1. Build a layout
 
     ```rb
-    class PaymentFailedMessage < Slackened::BlockKit::Message
+    class PaymentFailedMessage < Slackened::Surface::Message
       def self.layout(payment_id:, context:)
         build do |message|
           message.row header('Payment failed!')

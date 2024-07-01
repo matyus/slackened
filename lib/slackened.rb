@@ -3,6 +3,7 @@
 
 # Slack Incoming Webhook
 module Slackened
+	require_relative 'slackened/authentication'
 	require_relative 'slackened/authentication/request'
 	require_relative 'slackened/block_kit/blocks'
 	require_relative 'slackened/block_kit/blocks/actions'
