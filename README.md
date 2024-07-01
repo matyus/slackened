@@ -1,5 +1,7 @@
 # Slackened
 
+[![Gem Version](https://badge.fury.io/rb/slackened.svg)](https://badge.fury.io/rb/slackened)
+
 ## Dependencies
 
 - Setup a [Slack Incoming Webhook](https://api.slack.com/messaging/webhooks)
