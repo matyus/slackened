@@ -1,6 +1,6 @@
 # Slackened
 
-[![Gem Version](https://badge.fury.io/rb/slackened.svg)](https://badge.fury.io/rb/slackened)
+<a href="https://badge.fury.io/rb/slackened"><img src="https://badge.fury.io/rb/slackened.svg" alt="Gem Version" height="18"></a>
 
 ## Dependencies
 
