@@ -55,7 +55,7 @@
 
     https://api.slack.com/apps/<APP ID>/interactive-messages
 
-1. Parse payload
+1. Set the `signing_secret` in an initializer
 
     ```rb
     Slackened.configure do |config|
