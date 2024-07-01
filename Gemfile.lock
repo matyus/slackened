@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    Slackened (0.0.1.pre)
+    slackened (0.0.1.pre)
 
 GEM
   remote: https://rubygems.org/
@@ -26,8 +26,8 @@ PLATFORMS
   arm64-darwin-22
 
 DEPENDENCIES
-  Slackened!
   rspec (~> 3.13.0)
+  slackened!
   timecop (~> 0.9.10)
 
 BUNDLED WITH

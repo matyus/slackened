@@ -1,0 +1,6 @@
+root = true
+
+[*.{erb,html,js,rake,rb,gemspec}]
+indent_style = tab
+indent_size = 2
+tab_width = 2
