@@ -3,6 +3,7 @@
 ## Dependencies
 
 - Setup a [Slack Incoming Webhook](https://api.slack.com/messaging/webhooks)
+- Optionally setup [Interactivity](https://api.slack.com/interactivity/handling)
 - Store the URL as an ENV Variable outside the repo for safety
 
 ## Getting started
@@ -18,7 +19,6 @@
     ```rb
     Slackened.configure do |config|
       config.webhook_url = ENV.fetch('SLACK_WEBHOOK_URL') { puts 'SLACK_WEBHOOK_URL is missing.' }
-      config.signing_secret = ENV.fetch('SLACK_SIGNING_SECRET') { puts 'SLACK_SIGNING_SECRET is missing.' }
     end
     ```
 
@@ -48,6 +48,49 @@
       end
     end
     ```
+
+## Interactivity
+
+1. Enable **Interactivity & Shortcuts** for your app
+
+    https://api.slack.com/apps/<APP ID>/interactive-messages
+
+1. Parse payload
+
+    ```rb
+    Slackened.configure do |config|
+      config.webhook_url = ENV.fetch('SLACK_WEBHOOK_URL') { puts 'SLACK_WEBHOOK_URL is missing.' }
+      config.signing_secret = ENV.fetch('SLACK_SIGNING_SECRET') { puts 'SLACK_SIGNING_SECRET is missing.' }
+    end
+    ```
+
+1. Validate that the request is real & handle the response
+
+    ```rb
+    class ExampleController < ApplicationController
+        before_action :validate_request
+
+        def response
+            # Handle the request
+            # https://api.slack.com/interactivity/handling#message_responses
+            payload = JSON.parse(params.fetch(:payload))
+            response_url = payload['response_url']
+
+            # etc..
+
+            render plain: :ok
+        end
+
+        private
+
+        def validate_request
+            Slackened::Authentication.validate_request(
+                timestamp: request.headers.fetch('X-Slack-Request-Timestamp'),
+                signature: request.headers.fetch('X-Slack-Signature'),
+                body: request.raw_post
+            )
+        end
+    end
 
 
 ## Development
