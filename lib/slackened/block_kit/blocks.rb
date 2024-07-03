@@ -9,7 +9,7 @@ module Slackened
 			extend Forwardable
 
 			# alphabetical
-			def_delegators self, :actions, :button, :context, :divider, :header, :section, :text
+			def_delegators self, :actions, :button, :context, :custom, :divider, :header, :section, :text
 
 			# alphabetical
 			class << self
@@ -23,6 +23,10 @@ module Slackened
 
 				def context(*elements)
 					Context.new(*elements)
+				end
+
+				def custom(block)
+					Custom.new(block)
 				end
 
 				def divider

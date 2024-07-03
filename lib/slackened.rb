@@ -9,6 +9,7 @@ module Slackened
 	require_relative 'slackened/block_kit/blocks/actions'
 	require_relative 'slackened/block_kit/blocks/button'
 	require_relative 'slackened/block_kit/blocks/context'
+	require_relative 'slackened/block_kit/blocks/custom'
 	require_relative 'slackened/block_kit/blocks/divider'
 	require_relative 'slackened/block_kit/blocks/header'
 	require_relative 'slackened/block_kit/blocks/section'

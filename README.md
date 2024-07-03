@@ -31,7 +31,25 @@
       def self.layout(payment_id:, context:)
         build do |message|
           message.row header('Payment failed!')
+
           message.row context(context)
+
+          # if you want/need to design singular blocks via BlockKit builder
+          # https://app.slack.com/block-kit-builder/T6M32QL9G#%7B%22blocks%22:%5B%5D%7D
+          # then use the `custom` method:
+          message.row custom({
+            "type": "section",
+            "text": {
+              "type": "mrkdwn",
+              "text": "*Farmhouse Thai Cuisine*\n:star::star::star::star: 1528 reviews\n They do have some vegan options, like the roti and curry, plus they have a ton of salad stuff and noodles can be ordered without meat!! They have something for everyone here"
+            },
+            "accessory": {
+              "type": "image",
+              "image_url": "https://s3-media3.fl.yelpcdn.com/bphoto/c7ed05m9lC2EmA3Aruue7A/o.jpg",
+              "alt_text": "alt text for image"
+            }
+          })
+
           message.row section("Please do something about this: #{payment_id}")
         end
       end
@@ -95,11 +113,13 @@
 
       def validate_request
         # https://api.slack.com/authentication/verifying-requests-from-slack
-        Slackened::Authentication.validate_request(
+        authentic = Slackened::Authentication.validate_request(
           timestamp: request.headers.fetch('X-Slack-Request-Timestamp'),
           signature: request.headers.fetch('X-Slack-Signature'),
           body: request.raw_post
         )
+
+        render(plain: 'not ok', head: :unauthorized) and return unless authentic
       end
     end
 
@@ -110,6 +130,8 @@ Usable components:
   - Actions
   - Button
   - Context
+  - Custom (this is not a BlockKit component, this just lets you pass in
+    anything you want)
   - Divider
   - Header
   - Section

@@ -14,6 +14,7 @@ module Slackened
 			class MaximumElementsError < StandardError; end
 
 			class MustBeString < StandardError; end
+			class MustBeHash < StandardError; end
 
 			class InvalidElement < StandardError; end
 
