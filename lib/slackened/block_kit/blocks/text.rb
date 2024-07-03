@@ -10,7 +10,7 @@ module Slackened
 				MAX_LENGTH = 3000
 
 				def initialize(markdown)
-					raise TooManyCharactersError, "#{markdown.length} can't be greater than #{MAX_LENGTH}" if markdown.length > MAX_LENGTH
+					raise MaximumCharactersError, "#{markdown.length} can't be greater than #{MAX_LENGTH}" if markdown.length > MAX_LENGTH
 
 					set({
 						type: :mrkdwn,

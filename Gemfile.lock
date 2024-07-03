@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    slackened (0.0.1.pre)
+    slackened (0.0.2)
 
 GEM
   remote: https://rubygems.org/

@@ -10,7 +10,7 @@ module Slackened
 				MAX_LENGTH = 10
 
 				def initialize(*elements)
-					raise TooManyElementsError, "#{elements.count} can't be greater than #{MAX_LENGTH}" if elements.length > MAX_LENGTH
+					raise MaximumElementsError, "#{elements.count} can't be greater than #{MAX_LENGTH}" if elements.length > MAX_LENGTH
 
 					# TODO: need to allow for image
 					# https://api.slack.com/reference/block-kit/blocks#context

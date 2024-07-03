@@ -8,6 +8,7 @@ module Slackened
 		module Blocks
 			class Actions < Slackened::BlockKit::Blocks::Base
 				MAX_LENGTH = 25
+				ELEMENTS = %i(button checkboxes datepicker datetimepicker email_text_input file_input image multi_static_select multi_external_select multi_users_select multi_conversations_select multi_channels_select number_input overflow plain_text_input radio_buttons rich_text_input option_groups external_select users_select conversations_select channels_select timepicker url_text_input workflow_button)
 
 				def initialize(*elements)
 					raise MinimumElementsError if elements.length.zero?
@@ -15,7 +16,11 @@ module Slackened
 
 					set({
 						type: :actions,
-						elements:
+						elements: elements.map do |element|
+							raise InvalidElement unless ELEMENTS.include? element.block[:type]
+
+							element
+						end
 					})
 
 					self

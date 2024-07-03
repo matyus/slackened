@@ -15,6 +15,8 @@ module Slackened
 
 			class MustBeString < StandardError; end
 
+			class InvalidElement < StandardError; end
+
 			class Base
 				attr_accessor :block
 

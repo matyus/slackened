@@ -10,7 +10,7 @@ module Slackened
 				MAX_LENGTH = 10
 
 				def initialize(*fields) # rubocop:disable Metrics/MethodLength
-					raise TooManyFieldsError, "#{fields.count} can't be greater than #{MAX_LENGTH}" if fields.length > MAX_LENGTH
+					raise MaximumFieldsError, "#{fields.count} can't be greater than #{MAX_LENGTH}" if fields.length > MAX_LENGTH
 					raise MustBeString unless fields.all? { |f| f.is_a? String }
 
 					if fields.one?
