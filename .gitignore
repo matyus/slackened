@@ -4,3 +4,4 @@ certs/
 
 *.pem
 *.gem
+coverage
