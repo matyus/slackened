@@ -34,23 +34,27 @@
 
           message.row context(context)
 
+          message.row section("Please do something about this: #{payment_id}")
+
+          # NOTE:
           # if you want/need to design singular blocks via BlockKit builder
-          # https://app.slack.com/block-kit-builder/T6M32QL9G#%7B%22blocks%22:%5B%5D%7D
           # then use the `custom` method:
+
           message.row custom({
             "type": "section",
             "text": {
               "type": "mrkdwn",
-              "text": "*Farmhouse Thai Cuisine*\n:star::star::star::star: 1528 reviews\n They do have some vegan options, like the roti and curry, plus they have a ton of salad stuff and noodles can be ordered without meat!! They have something for everyone here"
+              "text": "Retry the batch process"
             },
             "accessory": {
-              "type": "image",
-              "image_url": "https://s3-media3.fl.yelpcdn.com/bphoto/c7ed05m9lC2EmA3Aruue7A/o.jpg",
-              "alt_text": "alt text for image"
+              "type": "button",
+              "text": {
+                "type": "plain_text",
+                "text": "Retry",
+                "emoji": true
+              }
             }
           })
-
-          message.row section("Please do something about this: #{payment_id}")
         end
       end
     end
@@ -65,6 +69,13 @@
           context: Rails.env,
           payment_id: 'payment-abc-erf-123'
         )
+
+
+        # NOTE:
+        # This is a raw Net::HTTPResponse
+        # Handle as you wish :)
+        # https://api.slack.com/messaging/webhooks#handling_errors
+        puts response.body
       end
     end
     ```
@@ -128,14 +139,78 @@
 Usable components:
 
   - Actions
+
   - Button
+
+    ```rb
+    button(
+      plain_text: 'Click here',
+      action_id: 'foo-1',
+      value: 'foo-bar'
+    )
+    ```
+
   - Context
-  - Custom (this is not a BlockKit component, this just lets you pass in
-    anything you want)
+
+    ```rb
+    context("#{Rails.env} | 2024-12-30")
+    ```
+
+  - Custom
+
+    This is not a BlockKit component, it lets you pass in a single valid block
+via the [BlockKit builder](https://app.slack.com/block-kit-builder)
+
+    ```rb
+    custom({
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "Retry the batch process"
+      },
+      "accessory": {
+        "type": "button",
+        "text": {
+          "type": "plain_text",
+          "text": "Retry",
+          "emoji": true
+        }
+      }
+    })
+    ```
+
   - Divider
+
+    ```rb
+    divider
+    ```
+
   - Header
+
+    ```rb
+    header('Hello world!')
+    ```
+
   - Section
+
+    ```rb
+    section('Passing in a single string here creates a single column section')
+    ```
+
+    ```rb
+    section(
+      'Passing in multiple strings',
+      'will create a two column section',
+      'and you are allowed up to ten params',
+      'they must all be strings'
+    )
+    ```
+
   - Text
+
+    ```rb
+    text('You may not need to use this directly, actually.')
+    ```
 
 ## Surfaces
 
