@@ -65,17 +65,23 @@
     ```rb
     class ExampleService
       def self.call
+        # Calling .post WILL NOT raise an Error
         response = ExampleMessage.post(
           context: Rails.env,
           payment_id: 'payment-abc-erf-123'
         )
 
-
-        # NOTE:
-        # This is a raw Net::HTTPResponse
-        # Handle as you wish :)
-        # https://api.slack.com/messaging/webhooks#handling_errors
         puts response.body
+j
+        # Calling .post! WILL raise an Error
+        begin
+          ExampleMessage.post!(
+            context: Rails.env,
+            payment_id: 'payment-abc-erf-123'
+          )
+        rescue Slackened::Error
+          puts "Fail!"
+        end
       end
     end
     ```
