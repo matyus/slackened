@@ -16,6 +16,7 @@ module Slackened
 	require_relative 'slackened/block_kit/blocks/text'
 	require_relative 'slackened/block_kit/builder'
 	require_relative 'slackened/configuration'
+	require_relative 'slackened/error'
 	require_relative 'slackened/http'
 	require_relative 'slackened/logger'
 	require_relative 'slackened/surface/message'

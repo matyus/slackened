@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'forwardable'
+require_relative '../error'
 
 module Slackened
 	module Surface
