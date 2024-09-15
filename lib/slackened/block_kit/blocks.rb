@@ -9,9 +9,6 @@ module Slackened
 			extend Forwardable
 
 			# alphabetical
-			def_delegators self, :actions, :button, :context, :custom, :divider, :header, :section, :text
-
-			# alphabetical
 			class << self
 				def actions(*elements)
 					Actions.new(*elements)
@@ -45,6 +42,10 @@ module Slackened
 					Text.new(*args)
 				end
 			end
+
+			# alphabetical
+			def_delegators self, :actions, :button, :context, :custom, :divider, :header, :section, :text
+
 		end
 	end
 end
