@@ -3,7 +3,7 @@
 
 Gem::Specification.new do |s|
 	s.name        = 'slackened'
-	s.version     = '0.0.3'
+	s.version     = '0.0.4'
 	s.licenses    = ['MIT']
 	s.summary     = 'Interact with your Slack apps'
 	s.description = 'A lightweight interface interacting with your Slack app via the web APIs'
