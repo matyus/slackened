@@ -20,6 +20,7 @@ module Slackened
 	require_relative 'slackened/http'
 	require_relative 'slackened/logger'
 	require_relative 'slackened/surface/message'
+	require_relative 'slackened/response'
 
 	extend Slackened::Logger
 

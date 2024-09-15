@@ -27,10 +27,26 @@ module Slackened
 				def post(url: Slackened.configuration.webhook_url, **kwargs)
 					layout(**kwargs)
 
-					Slackened::HTTP.post(
-						blocks: payload,
+					blocks = payload.dup
+
+					response = Slackened::HTTP.post(
+						blocks:,
 						url:
 					)
+
+					# clear the blocks after each post
+					@builder.setup!
+
+					Slackened::Response.new(response:, blocks:)
+				end
+
+				def post!(url: Slackened.configuration.webhook_url, **kwargs)
+					response = post(url:, **kwargs)
+
+					# https://api.slack.com/messaging/webhooks#handling_errors
+					raise Slackened::Error, response unless response.ok?
+
+					response
 				end
 
 				def layout

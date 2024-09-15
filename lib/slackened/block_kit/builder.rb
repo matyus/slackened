@@ -7,11 +7,15 @@ module Slackened
 			attr_accessor :blocks
 
 			def initialize
-				@blocks = []
+				setup!
 			end
 
 			def row(row)
 				blocks.push(row)
+			end
+
+			def setup!
+				@blocks = []
 			end
 		end
 	end
