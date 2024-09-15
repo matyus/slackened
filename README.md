@@ -72,7 +72,7 @@
         )
 
         puts response.body
-j
+
         # Calling .post! WILL raise an Error
         begin
           ExampleMessage.post!(
