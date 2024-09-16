@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
 		'rubygems_mfa_requirea' => 'true',
 		'source_code_uri' => 'https://github.com/matyus/slackened'
 	}
-	s.required_ruby_version = '>= 3.3.0'
+  s.required_ruby_version = '>= 3.0.0'
 	s.post_install_message = 'Did you know that Slack stands for: Searchable Log of All Communication and Knowledge?'
 	s.requirements << '"Activate incoming webhooks" in your Slack App settings and store the URL secretly/securely/safely outside of your codebase'
 	s.cert_chain  = ['certs/matyus.pem']
