@@ -7,7 +7,7 @@ module Slackened
 		def initialize(http_response)
 			@response = http_response
 
-			super("#{@response.code} #{@response.message}: #{@response.body}")
+			super("#{@response.code} #{@response.msg}: #{@response.body}")
 		end
 	end
 end
