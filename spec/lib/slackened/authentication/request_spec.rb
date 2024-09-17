@@ -3,9 +3,9 @@
 require 'timecop'
 require './lib/slackened'
 
-describe Slackened::Authentication::Request do # rubocop:disable Metrics/BlockLength
-	context '#stale?' do # rubocop:disable Metrics/BlockLength
-		context 'within a valid window' do
+describe Slackened::Authentication::Request do
+	describe '#stale?' do
+		context 'when inside a valid window' do
 			before do
 				Timecop.freeze(Time.new(2024, 1, 2, 1, 1))
 			end
@@ -24,7 +24,7 @@ describe Slackened::Authentication::Request do # rubocop:disable Metrics/BlockLe
 			end
 		end
 
-		context 'outside a valid window' do
+		context 'when outside a valid window' do
 			before do
 				Timecop.freeze(Time.new(2024, 1, 1, 1, 1))
 			end

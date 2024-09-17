@@ -7,10 +7,8 @@ module Slackened
 		# proof of concept
 		module Blocks
 			class Divider < Slackened::BlockKit::Blocks::Base
-				def initialize
+				def initialize # rubocop:disable Lint/MissingSuper
 					set({ type: :divider })
-
-					self
 				end
 
 				def to_h

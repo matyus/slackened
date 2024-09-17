@@ -7,12 +7,10 @@ module Slackened
 		# proof of concept
 		module Blocks
 			class Custom < Slackened::BlockKit::Blocks::Base
-				def initialize(block)
+				def initialize(block) # rubocop:disable Lint/MissingSuper
 					raise MustBeHash unless block.is_a? Hash
 
 					set(block)
-
-					self
 				end
 
 				def to_h

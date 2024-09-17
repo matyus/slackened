@@ -9,15 +9,15 @@ module Slackened
 			class Text < Slackened::BlockKit::Blocks::Base
 				MAX_LENGTH = 3000
 
-				def initialize(markdown)
-					raise MaximumCharactersError, "#{markdown.length} can't be greater than #{MAX_LENGTH}" if markdown.length > MAX_LENGTH
+				def initialize(markdown) # rubocop:disable Lint/MissingSuper
+					if markdown.length > MAX_LENGTH
+						raise MaximumCharactersError, "#{markdown.length} can't be greater than #{MAX_LENGTH}"
+					end
 
 					set({
 						type: :mrkdwn,
 						text: markdown
 					})
-
-					self
 				end
 			end
 		end

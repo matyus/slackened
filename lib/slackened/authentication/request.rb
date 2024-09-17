@@ -18,7 +18,7 @@ module Slackened
 			# https://api.slack.com/authentication/verifying-requests-from-slack
 			def stale?
 				# is it less than 5 minutes old?
-				five_minutes_ago = Time.now - 60 * 5
+				five_minutes_ago = Time.now - (60 * 5)
 
 				Time.at(@timestamp) > five_minutes_ago
 			end

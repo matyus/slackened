@@ -3,8 +3,8 @@
 require 'securerandom'
 require './lib/slackened'
 
-describe Slackened::BlockKit::Blocks::Section do # rubocop:disable Metrics/BlockLength
-	context '.new' do
+describe Slackened::BlockKit::Blocks::Section do
+	describe '.new' do
 		let(:text) { 'Velma Dinkley' }
 		let(:text_too_long) { SecureRandom.alphanumeric(3001) }
 
@@ -28,7 +28,7 @@ describe Slackened::BlockKit::Blocks::Section do # rubocop:disable Metrics/Block
 				'ten'
 			).to_h
 			expect(rendered[:type]).to eq(:section)
-			expect(rendered[:fields].length).to eql(10)
+			expect(rendered[:fields].length).to be(10)
 		end
 
 		it 'raises an error when a section object has given elevent nodes' do

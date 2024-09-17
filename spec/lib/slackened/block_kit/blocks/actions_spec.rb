@@ -2,7 +2,7 @@
 
 require './lib/slackened'
 
-describe Slackened::BlockKit::Blocks::Actions do # rubocop:disable Metrics/BlockLength
+describe Slackened::BlockKit::Blocks::Actions do
 	let(:button_a) do
 		Slackened::BlockKit::Blocks::Button.new(
 			plain_text: 'Click here',
@@ -21,11 +21,11 @@ describe Slackened::BlockKit::Blocks::Actions do # rubocop:disable Metrics/Block
 
 	let(:action) { described_class.new(button_a) }
 
-	context '.new' do
+	describe '.new' do
 		it 'renders an action object with fields properly' do
 			rendered = described_class.new(button_a, button_b).to_h
 
-			expect(rendered[:elements].length).to eql(2)
+			expect(rendered[:elements].length).to be(2)
 			expect(rendered[:elements][0][:type]).to eq(:button)
 			expect(rendered[:elements][1][:type]).to eq(:button)
 		end

@@ -18,7 +18,6 @@ module Slackened
 
 		class << self
 			def post(blocks: [], headers: {}, url: Slackened.configuration.webhook_url)
-
 				body = JSON.dump({ blocks: })
 
 				uri = URI(url)

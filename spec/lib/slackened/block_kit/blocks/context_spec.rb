@@ -3,8 +3,8 @@
 require 'securerandom'
 require './lib/slackened'
 
-describe Slackened::BlockKit::Blocks::Context do # rubocop:disable Metrics/BlockLength
-	context '.new' do
+describe Slackened::BlockKit::Blocks::Context do
+	describe '.new' do
 		let(:text) { 'Velma Dinkley' }
 		let(:text_too_long) { SecureRandom.alphanumeric(3001) }
 
@@ -29,7 +29,7 @@ describe Slackened::BlockKit::Blocks::Context do # rubocop:disable Metrics/Block
 				'ten'
 			).to_h
 			expect(rendered[:type]).to eq(:context)
-			expect(rendered[:elements].length).to eql(10)
+			expect(rendered[:elements].length).to be(10)
 		end
 
 		it 'raises an error when a context object has given elevent nodes' do

@@ -3,8 +3,8 @@
 require 'securerandom'
 require './lib/slackened'
 
-describe Slackened::BlockKit::Blocks::Button do # rubocop:disable Metrics/BlockLength
-	context '.new' do
+describe Slackened::BlockKit::Blocks::Button do
+	describe '.new' do
 		let(:plain_text) { 'Velma Dinkley' }
 		let(:plain_text_too_long) { SecureRandom.alphanumeric(76) }
 		let(:value) { 'value-1' }

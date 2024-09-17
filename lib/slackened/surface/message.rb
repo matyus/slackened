@@ -24,8 +24,8 @@ module Slackened
 					yield builder
 				end
 
-				def post(url: Slackened.configuration.webhook_url, **kwargs)
-					layout(**kwargs)
+				def post(url: Slackened.configuration.webhook_url, **)
+					layout(**)
 
 					blocks = payload.dup
 
@@ -40,8 +40,8 @@ module Slackened
 					Slackened::Response.new(response:, blocks:)
 				end
 
-				def post!(url: Slackened.configuration.webhook_url, **kwargs)
-					response = post(url:, **kwargs)
+				def post!(url: Slackened.configuration.webhook_url, **)
+					response = post(url:, **)
 
 					# https://api.slack.com/messaging/webhooks#handling_errors
 					raise Slackened::Error, response unless response.ok?

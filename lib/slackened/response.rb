@@ -14,7 +14,7 @@ module Slackened
 		end
 
 		def ok?
-			@code == "200"
+			@code == '200'
 		end
 
 		def to_h

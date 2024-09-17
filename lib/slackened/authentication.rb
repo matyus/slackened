@@ -12,10 +12,9 @@ module Slackened
 
 		# alphabetical
 		class << self
-			def validate_request(**kwargs)
-				Request.new(**kwargs).valid?
+			def validate_request(**)
+				Request.new(**).valid?
 			end
 		end
 	end
 end
-

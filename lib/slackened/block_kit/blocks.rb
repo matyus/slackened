@@ -14,8 +14,8 @@ module Slackened
 					Actions.new(*elements)
 				end
 
-				def button(**kwargs)
-					Button.new(**kwargs)
+				def button(**)
+					Button.new(**)
 				end
 
 				def context(*elements)
@@ -30,22 +30,21 @@ module Slackened
 					Divider.new
 				end
 
-				def header(*args)
-					Header.new(*args)
+				def header(*)
+					Header.new(*)
 				end
 
-				def section(*args)
-					Section.new(*args)
+				def section(*)
+					Section.new(*)
 				end
 
-				def text(*args)
-					Text.new(*args)
+				def text(*)
+					Text.new(*)
 				end
 			end
 
 			# alphabetical
 			def_delegators self, :actions, :button, :context, :custom, :divider, :header, :section, :text
-
 		end
 	end
 end

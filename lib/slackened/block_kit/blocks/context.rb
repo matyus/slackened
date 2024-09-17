@@ -9,7 +9,7 @@ module Slackened
 			class Context < Slackened::BlockKit::Blocks::Base
 				MAX_LENGTH = 10
 
-				def initialize(*elements)
+				def initialize(*elements) # rubocop:disable Lint/MissingSuper
 					raise MaximumElementsError, "#{elements.count} can't be greater than #{MAX_LENGTH}" if elements.length > MAX_LENGTH
 
 					# TODO: need to allow for image
@@ -22,8 +22,6 @@ module Slackened
 							Text.new(element)
 						end
 					})
-
-					self
 				end
 			end
 		end
